@@ -18,20 +18,28 @@
 per_cent = {'ТКБ': 5.6, 'СКБ': 5.9, 'ВТБ': 4.28, 'СБЕР': 4.0}
 print(69*'*')
 print("Уважаемый клиент, вам доступны следующие условия:")
-print()
 for bnk, per in per_cent.items():
     print(f'Банк "{bnk}"\t Процент по вкладу: {per}')
 print(69*'*')
-mny = float(input('Введите сумму, которую вы планируете внести: '))
+print()
+money = float(input('Введите сумму, которую вы планируете внести: '))
+print()
 print('Что вы получите через год:')
+print()
+deposit = []
 for bnk, per in per_cent.items():
-     print(f'Банк "{bnk}"\t Сумма на счету: {round((per/100+1)*mny, 2)}\t Ваш доход: {round(per*mny/100, 2)}')
-print(69*'*')
+     dep = per*money/100
+     print(f'Банк "{bnk}"\t Сумма на счету: {round((per/100+1)*money, 2)}\t Ваш доход: {round(dep, 2)}')
+     deposit.append(dep)
+print()
 print('Лучшие условия:')
+
+#print(f'Банк "{(max(per_cent, key=per_cent.get))}"\t Сумма на счету: {round((per / 100 + 1) * money, 2)}\t Ваш доход: {round(dep, 2)}')
+
 print(69*'*')
-# r = 0
-# for k in per_cent:
-#     if per_cent[k] > r:
-#         r = per_cent[k]
-#         m = k
-# print('макс:', m, round(r * money / 100, 2))
+print()
+print("Техническая информация (как в задании было):")
+print(f' money = {money}')
+print(f' deposit = {deposit}')
+print(f' Максимальная сумма, которую вы можете заработать — {max(deposit)}')
+print(69*'*')
