@@ -6,22 +6,22 @@
 # else:
 #     print('Нечетное число')
 
-#Ввод чисел и сортировка
-num = int(input('Введите число:'))
-data=[]
-while num !=0:
-    data.append(num)
-    num = int(input('Введите число:'))
-data.sort()
-print(data)
-wrd = input('Введите:')
-data=[]
-while wrd != '':
-    if wrd not in data:
-        data.append(wrd)
-    wrd = input('Введите:')
-for it in data:
-    print(it)
+# #Ввод чисел и сортировка
+# num = int(input('Введите число:'))
+# data=[]
+# while num !=0:
+#     data.append(num)
+#     num = int(input('Введите число:'))
+# data.sort()
+# print(data)
+# wrd = input('Введите:')
+# data=[]
+# while wrd != '':
+#     if wrd not in data:
+#         data.append(wrd)
+#     wrd = input('Введите:')
+# for it in data:
+#     print(it)
 
 # first_name = input("Введите ваше имя:")
 # last_name = input("Введите вашу фамилию:")
@@ -80,8 +80,19 @@ for it in data:
 #
 # print(a_and_b)
 
-a = 5
-b = 3+2
-print(id(a))
-print(id(b))
-print(id(b)-id(a))
+# a = 5
+# b = 3+2
+# print(id(a))
+# print(id(b))
+# print(id(b)-id(a))
+
+#Число от 1 до 100. Если делится на 3 Fizz, если на 5 Buzz
+for i in range(1,101):
+    if i%3 == 0 and i%5 == 0:
+        print("FizzBuzz")
+    elif i%5 == 0:
+        print("Buzz")
+    elif i%3 == 0:
+        print("Fizz")
+    else:
+        print(i)
