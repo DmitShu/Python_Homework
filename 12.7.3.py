@@ -19,21 +19,23 @@ print()
 money = float(input('Введите сумму, которую вы планируете внести: '))
 print()
 print('Что вы получите через год:')
-print()
 deposit = []
+depositint = []
 for bnk, per in per_cent.items():
      dep = per*money/100
      print(f'Банк "{bnk}"\t Сумма на счету: {round(money+dep, 2)}\t Ваш доход: {round(dep, 2)}')
      deposit.append(dep)
+     depositint.append(round(dep))
 print('Ваши лучшие условия:')
 dep = max(per_cent.values())*money/100
 print(f'Банк "{(max(per_cent, key=per_cent.get))}"\t Сумма на счету: {round(money+dep, 2)}\t Ваш доход: {round(dep, 2)}')
-
 print(69*'*')
-print(69*'*')
-print()
 print("Техническая информация (просто как в задании было):")
 print(f' money = {money}')
 print(f' deposit = {deposit}')
 print(f' Максимальная сумма, которую вы можете заработать — {max(deposit)}')
+print("(А еще там было без ноликов :) ):")
+print(f' money = {round(money)}')
+print(f' deposit = {depositint}')
+print(f' Максимальная сумма, которую вы можете заработать — {round(max(deposit))}')
 print(69*'*')
