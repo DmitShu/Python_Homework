@@ -96,8 +96,15 @@
 #         print("Fizz")
 #     else:
 #         print(i)
-t = input('words:').split()
-for it in t:
-    print(it, len(it))
-print('w N', len(t))
-print('S N', len(t)-1)
+
+
+# t = input('words:').split()
+# for it in t:
+#     print(it, len(it))
+# print('w N', len(t))
+# print('S N', len(t)-1)
+
+a=input()
+s=(len(a)+1) // 2
+print (a[:s])
+print (a[s:])
