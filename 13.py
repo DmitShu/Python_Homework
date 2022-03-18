@@ -71,8 +71,12 @@ N = 5
 # print()
 # print("Ответ: сумма равна = ", S)
 #13.6.2
-N = int(input('ВВедите: '))
-P = 1
+# N = int(input('ВВедите: '))
+# P = 1
+# for i in range(1, N+1):
+#     P *= i
+# print(P)
+#Задание 13.6.3
+N = int(input('ВВедите # * '))
 for i in range(1, N+1):
-    P *= i
-print(P)
+    print ('*'*i)
