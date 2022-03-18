@@ -47,7 +47,13 @@
 # else:
 #     print('net 5')
 #Задание 13.5.8
-list = [-5, 2, 4, 8, 8, -7, 5]
-print(list)
-print(set(list))
-print(len(list) == len(set(list)))
+# list = [-5, 2, 4, 8, 8, -7, 5]
+# print(list)
+# print(set(list))
+# print(len(list) == len(set(list)))
+#Задание 13.5.9
+a = int(input('Ввведите 8 зн. число '))
+try:
+    print (str(a) == str(a)[::-1])
+except:
+    print('Ошибка проверь ввод')
