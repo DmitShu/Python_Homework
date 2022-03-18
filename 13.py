@@ -16,8 +16,8 @@
 
 try:
     i = int(input("Ввведите число:"))
-except:
-    print("Вы ввели неправильное число")
+except ValueError as e:
+    print("Вы ввели неправильное число (Ошибка:)",e)
 else:
     print("Вы ввели неправильное число ",i)
 finally:
