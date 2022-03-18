@@ -50,4 +50,4 @@
 list = [-5, 2, 4, 8, 8, -7, 5]
 print(list)
 print(set(list))
-print(len(list) == len(set(list)) )
+print(len(list) == len(set(list)))
