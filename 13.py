@@ -77,6 +77,62 @@ N = 5
 #     P *= i
 # print(P)
 #Задание 13.6.3
-N = int(input('ВВедите # * '))
-for i in range(1, N+1):
-    print ('*'*i)
+# N = int(input('ВВедите # * '))
+# for i in range(1, N+1):
+#     print ('*'*i)
+n=1
+# while True:
+#    if n ** 2 >= 1000:
+#        print("Последнее число", n - 1)
+#        break
+#    n += 1
+# random_matrix = [
+#     [9, 2, 1],
+#     [2, 5, 3],
+#     [4, 8, 5]
+# ]
+#
+# mean_value_rows = []  # здесь будут храниться средние значения для каждой строки
+# min_value_rows = []  # здесь будут храниться минимальные значения для каждой строки
+# min_index_rows = []  # здесь будут храниться индексы минимальных значений для каждой строки
+# max_value_rows = []  # здесь будут храниться максимальные значения для каждой строки
+# max_index_rows = []  # здесь будут храниться индексы максимальных значений для каждой строки
+#
+# for row in random_matrix:  # здесь мы целиком берем каждую сроку
+#     min_index = 0  # в качестве минимального значения возьмем первый элемент строки
+#     max_index = 0
+#     min_value = row[min_index]  # начальное минимальное значение для каждой строки будет новое
+#     max_value = row[max_index]  # для максимального значения тоже самое
+#     for index_col in range(len(row)):
+#         if row[index_col] < min_value:
+#             min_value = row[index_col]
+#             min_index = index_col
+#         if row[index_col] > max_value:
+#             max_value = row[index_col]
+#             max_index = index_col
+#     min_value_rows.append(min_value)
+#     min_index_rows.append(min_index)
+#     max_value_rows.append(max_value)
+#     max_index_rows.append(max_index)
+#
+# print(min_value_rows)
+# print(min_index_rows)
+# print(max_value_rows)
+# print(max_index_rows)
+
+#Начинающий программист написал программу, которая находит индекс последнего отрицательного элемента в списке.
+
+list_ = [-5, 2, 4, 8, 12, -7, 5]
+# Объявим переменную, в которой будем хранить индекс отрицательного элемента
+ind = 0
+for i, v in enumerate(list_):
+    if v < 0:
+        print("Отрицательное число: ", v)
+        print("Новый индекс отрицательного числа: ", i)
+        ind = i
+    else:
+        print("Положительное число: ", v)
+    print("---")
+print("Конец цикла")
+print()
+print("Ответ: индекс последнего отрицательного элемента = ", ind)
