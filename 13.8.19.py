@@ -12,12 +12,29 @@
 #Setings:
 
 low = 0         # стоимость до 18
-avg = 990       # стоимость 18-25
-hig = 1390      # стоимость после 25
+avg = 1000       # стоимость 18-25
+hig = 2000      # стоимость после 25
 dsc = 0.1       # скидка ( 0 - 1 )
 pfd = 3         # билеты до скидки
 
 try:
-
+    print('Введите необходимое число билетов')
+    tnm = int(input())
+    if tnm > pfd:
+        dsc = 1 - dsc
+    else:
+        dsc = 1
+    tcst = 0
+    while tnm:
+        print(f'Введите возраст посетителя № {tnm}')
+        age = int(input())
+        if age < 18:
+            tcst += low*dsc
+        elif (18 <= age <= 25):
+            tcst += avg*dsc
+        else:
+            tcst += hig*dsc
+        tnm -= 1
+    print(f'Итоговая чумма: {tcst}')
 except:
     print("Чета пошло не так. Проверьте данные и попробуйте снова.")
