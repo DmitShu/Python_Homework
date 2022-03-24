@@ -66,3 +66,26 @@ def pow_func(base, n=2):
 
 pow_func(3)  # 9
 pow_func(5, 3)  # 125
+
+def get_multipliers(a):
+   count = 0
+   for n in range(1, a + 1):
+       if a % n == 0:
+           count += 1
+
+   return count
+
+print(get_multipliers(5))  # 2
+print(get_multipliers(4))  # 3
+#Проверка полиндром.
+def check_palindrome(str_):
+   str_ = str_.lower()
+   str_ = str_.replace(" ", "")
+
+   if str_ == str_[::-1]:
+       return True
+   else:
+       return False
+
+check_palindrome("test")  # False
+check_palindrome("Кит на море не романтик")  # True
