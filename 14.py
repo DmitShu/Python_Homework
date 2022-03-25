@@ -64,8 +64,8 @@ def add2and2():
 def pow_func(base, n=2):
    print(base ** n)
 
-pow_func(3)  # 9
-pow_func(5, 3)  # 125
+#pow_func(3)  # 9
+#pow_func(5, 3)  # 125
 
 def get_multipliers(a):
    count = 0
@@ -75,8 +75,8 @@ def get_multipliers(a):
 
    return count
 
-print(get_multipliers(5))  # 2
-print(get_multipliers(4))  # 3
+#print(get_multipliers(5))  # 2
+#print(get_multipliers(4))  # 3
 #Проверка полиндром.
 def check_palindrome(str_):
    str_ = str_.lower()
@@ -87,5 +87,30 @@ def check_palindrome(str_):
    else:
        return False
 
-check_palindrome("test")  # False
-check_palindrome("Кит на море не романтик")  # True
+#check_palindrome("test")  # False
+#check_palindrome("Кит на море не романтик")  # True
+def adder(*nums):
+    sum_ = 1
+    for n in nums:
+        sum_ *= n
+
+    return sum_
+
+
+print(adder())  # 0
+print(adder(1))  # 1
+print(adder(1, 2))  # 3
+print(adder(1, 2, 3))  # 6
+
+def rec_sum(n):
+   if n == 1:  # терминальный случай
+       return 1
+   return n + rec_sum(n - 1)  # рекурсивный вызов
+
+def sum_digit(n):
+   if n < 10:
+       return n
+   else:
+       return n % 10 + sum_digit(n // 10)
+
+sum_digit(123)  # 6
