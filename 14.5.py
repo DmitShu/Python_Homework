@@ -1,3 +1,7 @@
+iter_obj = iter("Hello!")
+
+print(next(iter_obj))
+
 #Генератор.
 def e():
     n = 1
@@ -12,3 +16,5 @@ for a in e(): # e() - генератор
         break # после достижения которого - завершаем цикл
     else:
         last = a # иначе - присваиваем новое значение
+L = ['THIS', 'IS', 'LOWER', 'STRING']
+print(list(map(str.lower, L)))
