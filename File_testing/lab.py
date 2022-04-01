@@ -9,7 +9,7 @@ def found(pathArr, finPoint):
                     if y > 0 and pathArr[y - 1][x] == 0:
                         pathArr[y - 1][x] = weight + 1
 
-                        # Вверх
+                    # Вверх
                     if y < (len(pathArr) - 1) and pathArr[y + 1][x] == 0:
                         pathArr[y + 1][x] = weight + 1
 
@@ -54,6 +54,7 @@ labirint = []
 with open("lab.txt") as myFile:
     for line in myFile:
         labirint.append(line.replace('\n', '').split(' '))
+print(labirint)
 
 ii = 0
 for i in labirint:
@@ -71,6 +72,10 @@ for i in labirint:
             labirint[ii][jj] = 0
         jj += 1
     ii += 1
+
+# print(labirint)
+# print(len(labirint))
+# print(len(labirint[0]))
 
 if not found(labirint, pozOut):
     print("Путь не найден!")
