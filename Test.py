@@ -104,7 +104,15 @@
 # print('w N', len(t))
 # print('S N', len(t)-1)
 
-a=input()
-s=(len(a)+1) // 2
-print (a[:s])
-print (a[s:])
+# a=input()
+# s=(len(a)+1) // 2
+# print (a[:s])
+# print (a[s:])
+teststr = []
+for i in range(1, 10):
+    teststr.append(i)
+print(teststr)
+print(id(teststr))
+teststr[0] = 10
+print(teststr)
+print(id(teststr))
