@@ -113,20 +113,17 @@ import json
 # Напишите программу, которая получает от пользователя имя файла, открывает этот файл в текущем каталоге, читает его и выводит два слова: наиболее часто встречающееся из тех, что имеют размер более трех символов, и наиболее длинное слово на английском языке.
 
 alphaeng = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'
-alpharu = 'йцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ'
 lng = 3
 
-# filename = input('Введите имя файла:')
+filename = input('Введите имя файла:')
 
 try:
-    with open('file3.txt', 'r', encoding='utf8') as f:
+    with open(filename, 'r', encoding='utf8') as f:
         data = f.read()
-        data = data.replace(",", "")
-        data = data.replace(".", "")
-        data = data.replace("!", "")
-        data = data.replace("?", "")
+        for i in '!"\'#$%&()*+-,/:;<=>?@[\\]^_{|}~':
+            data = data.replace(i, '')
         words = data.split()
-        print(words)
+        # print(words)
 
 except Exception as exf:
     print('Ошибка открытия файла', exf)
@@ -148,16 +145,30 @@ for word in words:
         largewords.append(word)
         # Список слов > 3 букв:
 
+#ищем повторяшки
+if not len(largewords):
+    print('Нет слов для вывода.')
+elif len(largewords) == 1:
+    print('Единственное слово: "',largewords[0], '"')
+else:
+    for word in largewords:
+        cntmax = 1
+        wrdtoprint = ''
+        for i in range(len(largewords)):
+            cnt = 1
+            if word == largewords[i]:
+                cnt += 1
+            if cnt > cntmax:
+                cntmax == cnt
+                wrdtoprint = word
+    print('Наиболее часто встречающееся из тех, что имеют размер более трех символов: "', wrdtoprint, '"')
+
+#ищем длинное англ слово
 for word in engwords:
     l = 0
     if len(word) > l:
         wrd2 = word
 if wrd2:
-    print('Наиболее длинное слово на английском языке: ', wrd2)
+    print('Наиболее длинное слово на английском языке:  "',wrd2, '"')
 else:
-    print('Слов на английском языке не найдено')
-
-# print(engwords)
-# print(largewords)
-
-
+    print('Слов на английском языке не найдено!')
