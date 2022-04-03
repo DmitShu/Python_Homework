@@ -114,7 +114,6 @@ import json
 
 alphaeng = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'
 lng = 3
-
 filename = input('Введите имя файла:')
 
 try:
@@ -130,8 +129,8 @@ except Exception as exf:
 
 engwords = []
 largewords = []
-wrd1 = ''
-wrd2 = ''
+wrd1 = []
+wrd2 = []
 for word in words:
     tmpword = ''
     for let in word:
@@ -144,30 +143,34 @@ for word in words:
     if len(word) > lng:
         largewords.append(word)
         # Список слов > 3 букв:
-
 #ищем повторяшки
 if not len(largewords):
     print('Нет слов для вывода.')
 elif len(largewords) == 1:
     print('Единственное слово: "',largewords[0], '"')
 else:
+    wrdtoprint = ''
+    cntm = 1
     for word in largewords:
-        cntmax = 1
-        wrdtoprint = ''
+        cnt = 0
         for i in range(len(largewords)):
-            cnt = 1
             if word == largewords[i]:
                 cnt += 1
-            if cnt > cntmax:
-                cntmax == cnt
-                wrdtoprint = word
-    print('Наиболее часто встречающееся из тех, что имеют размер более трех символов: "', wrdtoprint, '"')
+            if cnt == cntm and word not in wrd2:
+                wrd2.append(word)
+            if cnt > cntm:
+                cntm = cnt
+                wrd2 = [word]
+    print('Наиболее часто встречающееся из тех, что имеют размер более трех символов: "', wrd2, '"')
 
 #ищем длинное англ слово
+l = 0
 for word in engwords:
-    l = 0
+    if len(word) == l:
+        wrd2.append(word)
     if len(word) > l:
-        wrd2 = word
+        wrd2 = [word]
+        l = len(word)
 if wrd2:
     print('Наиболее длинное слово на английском языке:  "',wrd2, '"')
 else:
