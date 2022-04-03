@@ -33,7 +33,7 @@ def CheckBool(item):
 
 def CheckUrl(item):
      if isinstance(item, str):
-          return item.startswith('http:\\') or item.startswith('https:\\')
+          return item.startswith('http://') or item.startswith('https://')
      else:
           return False
 
@@ -50,16 +50,16 @@ for items in tmpl:
     for item in items:
         if item in itemslist:
             if itemslist[item] == 'int':
-                if not CheckInt(items(item)):
+                if not CheckInt(items[item]):
                     ErrorLog(item, items[item], f' ожидали тип {itemslist[item]}')
             elif itemslist[item] == 'str':
-                if not CheckStr(items(item)):
+                if not CheckStr(items[item]):
                     ErrorLog(item, items[item], f' ожидали тип {itemslist[item]}')
             elif itemslist[item] == 'bool':
-                if not CheckBool(items(item)):
+                if not CheckBool(items[item]):
                     ErrorLog(item, items[item], f' ожидали тип {itemslist[item]}')
             elif itemslist[item] == 'url':
-                if not CheckUrl(items(item)):
+                if not CheckUrl(items[item]):
                     ErrorLog(item, items[item], f' ожидали тип {itemslist[item]}')
             elif itemslist[item] == 'val':
                 if not CheckStrValue(items[item], ['itemBuyEvent', 'itemViewEvent']):
