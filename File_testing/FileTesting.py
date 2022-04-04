@@ -145,7 +145,6 @@ for word in words:
     if len(word) > lng:
         largewords.append(word)
         # Список слов > 3 букв:
-
 #ищем повторяшки
 if not len(largewords):
     print('Нет слов для вывода.')
@@ -159,19 +158,19 @@ else:
         for i in range(len(largewords)):
             if word == largewords[i]:
                 cnt += 1
-            if cnt == cntm and word not in wrd2:
-                wrd2.append(word)
+            if cnt == cntm and word not in wrd1:
+                wrd1.append(word)
             if cnt > cntm:
                 cntm = cnt
-                wrd2 = [word]
-    print('Наиболее часто встречающееся из тех, что имеют размер более трех символов: "', wrd2, '"')
+                wrd1 = [word]
+    print('Наиболее часто встречающееся из тех, что имеют размер более трех символов: "', wrd1, '"')
 
 #ищем длинное англ слово
 l = 0
 for word in engwords:
-    if len(word) == l:
+    if len(word) == l  and not word in wrd2:
         wrd2.append(word)
-    if len(word) > l:
+    elif len(word) > l:
         wrd2 = [word]
         l = len(word)
 if wrd2:
