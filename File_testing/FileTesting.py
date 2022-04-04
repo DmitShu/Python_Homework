@@ -115,11 +115,13 @@ import json
 alphaeng = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'
 lng = 3
 filename = input('Введите имя файла:')
+# filename = 'file3.txt'
 
 try:
     with open(filename, 'r', encoding='utf8') as f:
         data = f.read()
-        for i in '!"\'#$%&()*+-,/:;<=>?@[\\]^_{|}~':
+        data = data.lower()
+        for i in '1234567890!"\'#$%&()*+-,/:;<=>?@[\\]^_{|}~':
             data = data.replace(i, '')
         words = data.split()
         # print(words)
@@ -143,6 +145,7 @@ for word in words:
     if len(word) > lng:
         largewords.append(word)
         # Список слов > 3 букв:
+
 #ищем повторяшки
 if not len(largewords):
     print('Нет слов для вывода.')

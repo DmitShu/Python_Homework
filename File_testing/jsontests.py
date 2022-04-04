@@ -15,9 +15,11 @@ itemslist = {'timestamp': 'int', 'referer': 'url', 'location': 'url', 'remoteHos
           'firstInSession': 'bool', 'userAgentName': 'str'}
 
 Error = []
-
-with open('real.json', encoding='utf8') as f:
-     tmpl = json.load(f)
+try:
+    with open('real.json', encoding='utf8') as f:
+         tmpl = json.load(f)
+except Exception as ex:
+    print('Ошибкв открытия файла', ex)
 
 
 def CheckInt(item):
