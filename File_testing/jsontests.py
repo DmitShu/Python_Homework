@@ -19,7 +19,9 @@ try:
     with open('real.json', encoding='utf8') as f:
          tmpl = json.load(f)
 except Exception as ex:
-    print('Ошибкв открытия файла', ex)
+    print('Ошибка открытия файла')
+    tmpl = []
+    Error = [ex]
 
 
 def CheckInt(item):

@@ -128,6 +128,7 @@ try:
 
 except Exception as exf:
     print('Ошибка открытия файла', exf)
+    words = []
 
 engwords = []
 largewords = []
