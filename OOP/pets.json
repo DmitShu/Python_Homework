@@ -1,0 +1,168 @@
+{
+    "count": 5,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": "1708750b-f0ce-47ac-b5fa-b24310d167fd",
+            "breed": {
+                "id": "ce8e2940-9a60-4de7-85f7-7e49759fa080",
+                "name": "питбуль",
+                "code": "pitbull"
+            },
+            "species": {
+                "id": "718fe547-0574-4c04-8795-7e594e088c4e",
+                "name": "собака",
+                "code": "dog"
+            },
+            "status": {
+                "id": "076ea473-532c-443e-b7ee-f60b060d6bb2",
+                "name": "хотят забрать",
+                "code": "wait_home"
+            },
+            "doc": {
+                "id": "0bce1486-6bab-4cd4-a466-94d4cfdf3fd1",
+                "reg_num": "п24022020",
+                "date": "2020-02-24",
+                "cage": "А65ф"
+            },
+            "owner": null,
+            "gender": {
+                "id": "0045491e-e44e-410d-8efa-4168e3b41721",
+                "name": "мальчик",
+                "code": "m"
+            },
+            "name": "Феликс",
+            "age": 2,
+            "photo": "http://130.193.37.179/media/img/felix.jpeg"
+        },
+        {
+            "id": "517d137a-d05e-48bc-b1c0-cfeb09e06f23",
+            "breed": {
+                "id": "976df73f-aa7e-436d-8898-a24dc6f3c499",
+                "name": "сибирская кошка",
+                "code": "siberian_cat"
+            },
+            "species": {
+                "id": "166941d7-672d-438a-8f7c-2648715f8872",
+                "name": "кошка",
+                "code": "cat"
+            },
+            "status": {
+                "id": "765b5eb8-2ea3-4991-85cc-a011a9bb0b46",
+                "name": "без дома",
+                "code": "out_home"
+            },
+            "doc": {
+                "id": "149d7085-cdad-478a-9b75-3d74226a7152",
+                "reg_num": "с29022020",
+                "date": "2020-02-29",
+                "cage": "К8"
+            },
+            "owner": null,
+            "gender": {
+                "id": "0045491e-e44e-410d-8efa-4168e3b41721",
+                "name": "мальчик",
+                "code": "m"
+            },
+            "name": "Барон",
+            "age": 2,
+            "photo": "http://130.193.37.179/media/img/baron.jpeg"
+        },
+        {
+            "id": "70a41546-3381-4d13-be73-3096ef0cbe0b",
+            "breed": {
+                "id": "39e9a1d5-f069-4713-9729-ce5d3a8fc06e",
+                "name": "корелла",
+                "code": "cockatiel"
+            },
+            "species": {
+                "id": "4628a324-09f3-4120-ba9f-862a9e17fcec",
+                "name": "попугай",
+                "code": "parrot"
+            },
+            "status": {
+                "id": "765b5eb8-2ea3-4991-85cc-a011a9bb0b46",
+                "name": "без дома",
+                "code": "out_home"
+            },
+            "doc": {
+                "id": "97d9f821-77b2-4b6a-8bf5-3c49b9663361",
+                "reg_num": "к29022020",
+                "date": "2020-02-29",
+                "cage": "С2"
+            },
+            "owner": null,
+            "gender": {
+                "id": "0045491e-e44e-410d-8efa-4168e3b41721",
+                "name": "мальчик",
+                "code": "m"
+            },
+            "name": "Гоша",
+            "age": 1,
+            "photo": "http://130.193.37.179/media/img/gosha.jpeg"
+        },
+        {
+            "id": "a9297832-56e5-4949-9ac6-88b7973e1807",
+            "breed": {
+                "id": "5a1b815b-0485-4cb7-a5d9-96b5aca6ff1d",
+                "name": "немецкая овчарка",
+                "code": "german_shepherd"
+            },
+            "species": {
+                "id": "718fe547-0574-4c04-8795-7e594e088c4e",
+                "name": "собака",
+                "code": "dog"
+            },
+            "status": {
+                "id": "076ea473-532c-443e-b7ee-f60b060d6bb2",
+                "name": "хотят забрать",
+                "code": "wait_home"
+            },
+            "doc": {
+                "id": "0f5f3ce6-de66-4161-9628-6e713166d456",
+                "reg_num": "н01032020",
+                "date": "2020-03-01",
+                "cage": "Р13"
+            },
+            "owner": null,
+            "gender": {
+                "id": "0045491e-e44e-410d-8efa-4168e3b41721",
+                "name": "мальчик",
+                "code": "m"
+            },
+            "name": "Мухтар",
+            "age": 0,
+            "photo": "http://130.193.37.179/media/img/grovcharka1.jpeg"
+        },
+        {
+            "id": "b094a60f-9471-4019-aafe-381128db9814",
+            "breed": {
+                "id": "976df73f-aa7e-436d-8898-a24dc6f3c499",
+                "name": "сибирская кошка",
+                "code": "siberian_cat"
+            },
+            "species": {
+                "id": "166941d7-672d-438a-8f7c-2648715f8872",
+                "name": "кошка",
+                "code": "cat"
+            },
+            "status": null,
+            "doc": {
+                "id": "0892f256-aea8-46bd-8ba1-27ae28e1fa33",
+                "reg_num": "с07032020",
+                "date": "2020-03-07",
+                "cage": "К543"
+            },
+            "owner": null,
+            "gender": {
+                "id": "0045491e-e44e-410d-8efa-4168e3b41721",
+                "name": "мальчик",
+                "code": "m"
+            },
+            "name": "Сэм",
+            "age": 2,
+            "photo": "http://130.193.37.179/media/img/sam.jpeg"
+        }
+    ]
+}
