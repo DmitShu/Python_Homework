@@ -18,4 +18,5 @@ for item, value in tmpl.items():
                 catsall.append(CatClass(it1.get('name'), it1.get('gender').get('name'), it1.get('age')))
 
 for cat in catsall:
-    print(f'Имя котэ: "{cat.name}"\t Пол кашака: "{cat.gender}"\t Возраст кашака: "{cat.age}"')
+    print(69 * '-')
+    print(f'Имя котэ: "{cat.getName()}"\t\t Пол кашака: "{cat.getGender()}"\t\t Возраст кашака: "{cat.getAge()}"')
