@@ -1,7 +1,7 @@
 import json
 from cat import CatClass
 
-#словарик кошечек
+#список кошечек
 catsall = []
 
 try:
