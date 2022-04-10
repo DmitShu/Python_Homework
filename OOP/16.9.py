@@ -21,8 +21,9 @@ def addguest():
             ct = input(f'Ведите город гостя № {i + 1}: ')
             ss = input(f'Ведите статус гостя № {i + 1}: ')
             allguests.append(Volunteer(nm, sm, ct, ss))
-    except:
-        print('Данные ввадены не верно. Попробуйте снова.')
+    except Exception as ex1:
+        # print(ex1)
+        print('Данные введены не верно.', ex1, 'Попробуйте снова.')
         addguest()
 
 #метод извлечения гостей
@@ -30,7 +31,11 @@ def getguests():
     if allguests:
         print('Список гостей:')
         for guest in allguests:
-            print(f' {guest.getInfo()[0]} {guest.getInfo()[1]}, г.{guest.getInfo()[2]}, статус:"{guest.getInfo()[3]}"')
+            print(f'{allguests.index(guest)+1}'
+                  f'. {guest.getInfo()[0]}'
+                  f' {guest.getInfo()[1]}'
+                  f', г.{guest.getInfo()[2]}'
+                  f', статус:"{guest.getInfo()[3]}"')
     else:
         print('Список гостей пуст')
 
