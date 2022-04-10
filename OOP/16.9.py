@@ -21,8 +21,8 @@ def addguest():
             ct = input(f'Ведите город гостя № {i + 1}: ')
             ss = input(f'Ведите статус гостя № {i + 1}: ')
             allguests.append(Volunteer(nm, sm, ct, ss))
+
     except Exception as ex1:
-        # print(ex1)
         print('Данные введены не верно.', ex1, 'Попробуйте снова.')
         addguest()
 
@@ -36,6 +36,7 @@ def getguests():
                   f' {guest.getInfo()[1]}'
                   f', г.{guest.getInfo()[2]}'
                   f', статус:"{guest.getInfo()[3]}"')
+
     else:
         print('Список гостей пуст')
 
