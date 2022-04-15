@@ -29,13 +29,21 @@ D = {k : 100 for k in G.keys()} # расстояния
 start_k = 'Адмиралтейская' # стартовая вершина
 D[start_k] = 0 # расстояние от неё до самой себя равно нулю
 U = {k : False for k in G.keys()} # флаги просмотра вершин
+P = {k : None for k in G.keys()} # предки
+pointer = 'Владимирская' # куда должны прийти
 
 for _ in range(len(D)):
     # выбираем среди непросмотренных наименьшее по расстоянию
     min_k = min([k for k in U.keys() if not U[k]], key = lambda x: D[x])
 
     for v in G[min_k].keys(): # проходимся по всем смежным вершинам
-        D[v] = min(D[v], D[min_k] + G[min_k][v]) # минимум
+         if D[v] > D[min_k] + G[min_k][v]: # если расстояние от текущей вершины меньше
+            D[v] = D[min_k] + G[min_k][v] # то фиксируем его
+            P[v] = min_k # и записываем как предок
     U[min_k] = True # просмотренную вершину помечаем
 
 print(D)
+
+while pointer is not None: # перемещаемся, пока не придём в стартовую точку
+    print(pointer)
+    pointer = P[pointer]
