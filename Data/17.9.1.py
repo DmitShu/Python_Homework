@@ -1,20 +1,34 @@
 import random
 
-#Функция принимает данные с проверкой корректности ввода и выводит список + число.
-def load_data():
-    print('Введите последовательность чисел через пробел.')
+#Функция принимает данные с проверкой корректности ввода и выводит сортированный список.
+def load_array():
+    print('v  Введите последовательность чисел через пробел.  v')
     try:
         #костыль запятая точка для float
         a = list(map(float, input().replace(',', '.').split()))
-        print('Введите любое число.')
-        n = float(input().replace(',', '.'))
-        #сортируем и выводим список + число
-        return sort(a, 0, len(a) - 1), n
+        if len(a) < 2:
+            print('Необходимо как минимум два числа. Попробуйте снова.')
+            return (load_array())
 
-    except Exception as ex1:
-        print('Данные введены не верно.\n',ex1, '\nПопробуйте снова.')
-        print(96 * '*')
-        load_data()
+        #сортируем и выводим список + число
+        return sort(a, 0, len(a) - 1)
+    except Exception as ex:
+        print('Данные введены не верно.\n',ex, '\nЧисла следует вводить через пробел. Для нецелых допускается использовать , и . \nНапример: -968,98 .876 -22 .35 \nПопробуйте снова.')
+        print(69 * '*')
+        return(load_array())
+
+#Функция ввода числа с контролем.
+def load_num():
+    print('v  Введите число для сравнения.  v')
+    try:
+        #костыль запятая точка для float
+        n = float(input().replace(',', '.'))
+        return n
+
+    except Exception as ex:
+        print('Данные введены не верно.\n',ex, '\nТребуется одно число. Для нецелых допускается использовать , и . \nНапример: -666,999\nПопробуйте снова.')
+        print(69 * '*')
+        return(load_num())
 
 #Функция "быстрой" сортировки
 def sort(array, left, right):
@@ -36,5 +50,6 @@ def sort(array, left, right):
         sort(array, i, right)
     return(array)
 
-array, number = load_data()
-print(array, number)
+array = load_array()
+num = load_num()
+print(array, num)
