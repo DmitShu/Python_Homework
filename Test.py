@@ -116,3 +116,4 @@ print(id(teststr))
 teststr[0] = 10
 print(teststr)
 print(id(teststr))
+print((0 + 1) // 2)

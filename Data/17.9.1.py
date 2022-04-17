@@ -64,10 +64,10 @@ def binary_search(array, element, left, right):
     if left > right:  # если левая граница превысила правую,
         return False  # значит элемент отсутствует
 
-    middle = (right + left) // 2  # находимо середину
-    if array[middle-1] < element <= array[middle]:  # если элемент в середине,
-        return middle  # возвращаем этот индекс
-    elif element <= array[middle]:  # если элемент не более эл-та в середине,
+    middle = (right + left) // 2  # находим середину
+    if middle and array[middle - 1] < element <= array[middle]:  # если элемент в середине,
+        return middle #требуется вывести именно номер позиции, а не индекс, поэтому +1 от индекса ?
+    elif middle and element <= array[middle - 1]:  # если элемент не более эл-та в середине,
         return binary_search(array, element, left, middle - 1) # рекурсивно ищем в левой половине
     else:
         return binary_search(array, element, middle + 1, right) # иначе в правой
@@ -76,11 +76,12 @@ array, end = load_array()
 num = load_num()
 out = binary_search(array, num, 0, end)
 
-print('Сортированный список:\n', array)
-
+print(69 * '-')
 if out:
     print('Номер позиции элемента, который меньше "',num,'", а следующий за ним больше или равен "',num,'":')
-    #требуется вывести именно номер позиции, а не индекс, поэтому +1 ?
-    print('"',out + 1,'"')
+    print('"',out,'"')
+    array[out - 1] = '*' + str(array[out - 1]) + '*'
 else:
     print('Нет элемента, который меньше "',num,'", а следующий за ним больше или равен "',num,'":')
+
+print('Сортированный список (справочная информация):\n', array)
