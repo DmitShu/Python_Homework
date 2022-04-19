@@ -5,6 +5,7 @@
 # - Устанавливается номер позиции элемента, который меньше введенного пользователем числа, а следующий за ним больше или равен этому числу.
 
 import random
+import time
 
 #Функция принимает данные с проверкой корректности ввода и выводит сортированный список.
 def load_array():
@@ -56,6 +57,7 @@ def sort(array, left, right):
         sort(array, left, j)
     if right > i:
         sort(array, i, right)
+    # array.sort()
     return(array)
 
 #Функция двоичный поиск
@@ -72,7 +74,11 @@ def binary_search(array, element, left, right):
     else:
         return binary_search(array, element, middle + 1, right) # иначе в правой
 
+t0 = time.time()
 array, end = load_array()
+dt = time.time() - t0
+print(dt)
+# экспа со временем.
 num = load_num()
 out = binary_search(array, num, 0, end)
 
