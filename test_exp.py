@@ -10,6 +10,7 @@ TestFile = 'dist\exmpl.txt'
 with open(TestFile, encoding='utf8') as f:
     input = f.read().split()
 
+print('Загружено', len(input), 'элементов для сортировки. \n')
 def chk_time(fn):
    def wrapper(*args):
        t0 = time.time()
