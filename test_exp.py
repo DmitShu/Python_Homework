@@ -1,8 +1,8 @@
-import time
 import random
+from datetime import datetime
 
 #число циклов теста
-n = 666
+n = 3
 
 #исходные данные
 TestFile = 'dist\exmpl.txt'
@@ -10,17 +10,10 @@ TestFile = 'dist\exmpl.txt'
 with open(TestFile, encoding='utf8') as f:
     input = f.read().split()
 
-print('Загружено', len(input), 'элементов для сортировки. \n')
-def chk_time(fn):
-   def wrapper(*args):
-       t0 = time.time()
-       fn(*args)
-       dt = (time.time() - t0) / 1000
-       return dt
-   return wrapper
+right = len(input) - 1
+print('Загружено', len(input)+1, 'элементов для сортировки. \n')
 
 #говно сортировка
-@chk_time
 def bad_sort(data):
 
     is_sort = False  # станет True, если отсортирован
@@ -39,7 +32,6 @@ def bad_sort(data):
     return data
 
 # Сортировка выбором
-@chk_time
 def selection_sort(data):
     for i in range(len(data)):  # проходим по всему массиву
         idx_min = i  # сохраняем индекс предположительно минимального элемента
@@ -52,7 +44,6 @@ def selection_sort(data):
     return data
 
 # Cортировка пузырьком
-@chk_time
 def buble_sort(data):
     for i in range(len(data)):
         for j in range(len(data) - i - 1):
@@ -62,7 +53,6 @@ def buble_sort(data):
     return data
 
 # Cортировка вставками
-@chk_time
 def insert_sort(data):
     for i in range(1, len(data)):
         x = data[i]
@@ -74,28 +64,124 @@ def insert_sort(data):
 
     return data
 
+
+# Сортировка слиянием
+def merge_sort(L):  # "разделяй"
+    if len(L) < 2:  # если кусок массива равен 2,
+        return L[:]  # выходим из рекурсии
+    else:
+        middle = len(L) // 2  # ищем середину
+        left = merge_sort(L[:middle])  # рекурсивно делим левую часть
+        right = merge_sort(L[middle:])  # и правую
+        return merge(left, right)  # выполняем слияние
+
+
+def merge(left, right):  # "властвуй"
+    result = []  # результирующий массив
+    i, j = 0, 0  # указатели на элементы
+
+    # пока указатели не вышли за границы
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+
+    # добавляем хвосты
+    while i < len(left):
+        result.append(left[i])
+        i += 1
+
+    while j < len(right):
+        result.append(right[j])
+        j += 1
+
+    return result
+
+# Быстрая сортировка
+def qsort(array, left, right):
+    middle = (left + right) // 2
+
+    p = array[middle]
+    i, j = left, right
+    while i <= j:
+        while array[i] < p:
+            i += 1
+        while array[j] > p:
+            j -= 1
+        if i <= j:
+            array[i], array[j] = array[j], array[i]
+            i += 1
+            j -= 1
+
+    if j > left:
+        qsort(array, left, j)
+    if right > i:
+        qsort(array, i, right)
+
+    return array
+
+# Быстрая сортировка с рандомом
+def qsort_random(array, left, right):
+    p = random.choice(array[left:right + 1])
+    i, j = left, right
+    while i <= j:
+        while array[i] < p:
+            i += 1
+        while array[j] > p:
+            j -= 1
+        if i <= j:
+            array[i], array[j] = array[j], array[i]
+            i += 1
+            j -= 1
+
+    if j > left:
+        qsort_random(array, left, j)
+    if right > i:
+        qsort_random(array, i, right)
+
+    return array
+
 # Сортировка
-@chk_time
 def sort_sort(data):
     data.sort()
     return data
 
-# Сортировка слиянием
+# Замеры
 
+start_time = datetime.now()
+for _ in range(n):
+    selection_sort(input)
+print('Сортировка выбором. Время выполнения', n, 'циклов:\n', datetime.now() - start_time)
 
-def mean_time(fn):
-    t = 0
-    global n
-    for _ in range(n):
-        t += fn
-    return t
+start_time = datetime.now()
+for _ in range(n):
+    buble_sort(input)
+print('Сортировка пузырьком. Время выполнения', n, 'циклов:\n', datetime.now() - start_time)
 
-print('Сортировка выбором. Время выполнения', n, 'циклов, c:\n', mean_time(selection_sort(input)))
-print('Сортировка пузырьком. Время выполнения', n, 'циклов, c:\n', mean_time(buble_sort(input)))
-print('Сортировка вставками. Время выполнения', n, 'циклов, c:\n', mean_time(insert_sort(input)))
-print('Сортировка sort(). Время выполнения', n, 'циклов, c:\n', mean_time(sort_sort(input)))
+start_time = datetime.now()
+for _ in range(n):
+    insert_sort(input)
+print('Сортировка вставками. Время выполнения', n, 'циклов:\n', datetime.now() - start_time)
 
+start_time = datetime.now()
+for _ in range(n):
+    merge_sort(input)
+print('Сортировка слиянием. Время выполнения', n, 'циклов:\n', datetime.now() - start_time)
 
+start_time = datetime.now()
+for _ in range(n):
+    qsort(input, 0, right)
+print('Сортировка быстрая. Время выполнения', n, 'циклов:\n', datetime.now() - start_time)
 
+start_time = datetime.now()
+for _ in range(n):
+    qsort_random(input, 0, right)
+print('Сортировка быстрая рандом. Время выполнения', n, 'циклов:\n', datetime.now() - start_time)
 
-
+start_time = datetime.now()
+for _ in range(n):
+    sort_sort(input)
+print('Сортировка Sort(). Время выполнения', n, 'циклов:\n', datetime.now() - start_time)
