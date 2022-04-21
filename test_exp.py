@@ -2,7 +2,7 @@ import random
 from datetime import datetime
 
 #число циклов теста
-n = 3
+n = 10
 
 #исходные данные
 TestFile = 'dist\exmpl.txt'
@@ -161,6 +161,7 @@ for _ in range(n):
     buble_sort(input)
 print('Сортировка пузырьком. Время выполнения', n, 'циклов:\n', datetime.now() - start_time)
 
+n = 1000
 start_time = datetime.now()
 for _ in range(n):
     insert_sort(input)
