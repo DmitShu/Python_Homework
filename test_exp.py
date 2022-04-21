@@ -11,7 +11,7 @@ with open(TestFile, encoding='utf8') as f:
     input = f.read().split()
 
 right = len(input) - 1
-print('Загружено', len(input)+1, 'элементов для сортировки. \n')
+print('Загружено', right+1, 'элементов для сортировки. \n')
 
 #говно сортировка
 def bad_sort(data):
