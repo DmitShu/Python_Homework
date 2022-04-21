@@ -15,7 +15,7 @@ def chk_time(fn):
    def wrapper(*args):
        t0 = time.time()
        fn(*args)
-       dt = time.time() - t0
+       dt = (time.time() - t0) / 1000
        return dt
    return wrapper
 
@@ -36,7 +36,7 @@ def bad_sort(data):
                 is_sort = False
                 break
 
-    return(data)
+    return data
 
 # Сортировка выбором
 @chk_time
@@ -49,7 +49,7 @@ def selection_sort(data):
         if i != idx_min:  # если индекс не совпадает с минимальным, меняем
             data[i], data[idx_min] = data[idx_min], data[i]
 
-    return(data)
+    return data
 
 # Cортировка пузырьком
 @chk_time
@@ -59,7 +59,7 @@ def buble_sort(data):
             if data[j] > data[j + 1]:
                 data[j], data[j + 1] = data[j + 1], data[j]
 
-    return(data)
+    return data
 
 # Cортировка вставками
 @chk_time
@@ -72,7 +72,13 @@ def insert_sort(data):
             idx -= 1
         data[idx] = x
 
-    return(data)
+    return data
+
+# Сортировка
+@chk_time
+def sort_sort(data):
+    data.sort()
+    return data
 
 # Сортировка слиянием
 
@@ -84,10 +90,12 @@ def mean_time(fn):
         t += fn
     return t
 
-# print('Сортировка выбором. Время выполнения', n, 'циклов:\n', mean_time(selection_sort(input)))
-# print('Сортировка пузырьком. Время выполнения', n, 'циклов:\n', mean_time(buble_sort(input)))
-# print('Сортировка вставками. Время выполнения', n, 'циклов:\n', mean_time(insert_sort(input)))
-# print(insert_sort(input))
+print('Сортировка выбором. Время выполнения', n, 'циклов, c:\n', mean_time(selection_sort(input)))
+print('Сортировка пузырьком. Время выполнения', n, 'циклов, c:\n', mean_time(buble_sort(input)))
+print('Сортировка вставками. Время выполнения', n, 'циклов, c:\n', mean_time(insert_sort(input)))
+print('Сортировка sort(). Время выполнения', n, 'циклов, c:\n', mean_time(sort_sort(input)))
+
+
 
 
 
