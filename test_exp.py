@@ -2,7 +2,7 @@ import time
 import random
 
 #число циклов теста
-n = 100
+n = 666
 
 #исходные данные
 TestFile = 'dist\exmpl.txt'
@@ -51,6 +51,32 @@ def selection_sort(data):
 
     return(data)
 
+# Cортировка пузырьком
+@chk_time
+def buble_sort(data):
+    for i in range(len(data)):
+        for j in range(len(data) - i - 1):
+            if data[j] > data[j + 1]:
+                data[j], data[j + 1] = data[j + 1], data[j]
+
+    return(data)
+
+# Cортировка вставками
+@chk_time
+def insert_sort(data):
+    for i in range(1, len(data)):
+        x = data[i]
+        idx = i
+        while idx > 0 and data[idx - 1] > x:
+            data[idx] = data[idx - 1]
+            idx -= 1
+        data[idx] = x
+
+    return(data)
+
+# Сортировка слиянием
+
+
 def mean_time(fn):
     t = 0
     global n
@@ -58,6 +84,10 @@ def mean_time(fn):
         t += fn
     return t
 
-print('Сортировка выбором. Время выполнения', n, 'циклов:\n', mean_time(selection_sort(input)))
+# print('Сортировка выбором. Время выполнения', n, 'циклов:\n', mean_time(selection_sort(input)))
+# print('Сортировка пузырьком. Время выполнения', n, 'циклов:\n', mean_time(buble_sort(input)))
+# print('Сортировка вставками. Время выполнения', n, 'циклов:\n', mean_time(insert_sort(input)))
+# print(insert_sort(input))
+
 
 
