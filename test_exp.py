@@ -3,19 +3,23 @@ import random
 
 #число циклов теста
 n = 100
-print(time.time())
+
 #исходные данные
-input = [2, 3, 1, 4, 6, 5, 9, 8, 7]
+TestFile = 'dist\exmpl.txt'
 
-def runtime(testfn):
-    print(time.time())
-    global n
-    a = testfn
-    for _ in range(n):
-        a = testfn
-    print(time.time())
-    return a
+with open(TestFile, encoding='utf8') as f:
+    input = f.read().split()
 
+def chk_time(fn):
+   def wrapper(*args):
+       t0 = time.time()
+       fn(*args)
+       dt = time.time() - t0
+       return dt
+   return wrapper
+
+#говно сортировка
+@chk_time
 def bad_sort(data):
 
     is_sort = False  # станет True, если отсортирован
@@ -33,5 +37,26 @@ def bad_sort(data):
 
     return(data)
 
-print(runtime(bad_sort(input)))
-print(time.time())
+# Сортировка выбором
+@chk_time
+def selection_sort(data):
+    for i in range(len(data)):  # проходим по всему массиву
+        idx_min = i  # сохраняем индекс предположительно минимального элемента
+        for j in range(i, len(data)):
+            if data[j] < data[idx_min]:
+                idx_min = j
+        if i != idx_min:  # если индекс не совпадает с минимальным, меняем
+            data[i], data[idx_min] = data[idx_min], data[i]
+
+    return(data)
+
+def mean_time(fn):
+    t = 0
+    global n
+    for _ in range(n):
+        t += fn
+    return t
+
+print('Сортировка выбором. Время выполнения', n, 'циклов:\n', mean_time(selection_sort(input)))
+
+
