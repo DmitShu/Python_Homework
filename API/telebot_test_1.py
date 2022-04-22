@@ -17,6 +17,7 @@ def handle_start_help(message):
 def handle_docs_audio(message):
     pass
 
+# На фотки
 @bot.message_handler(content_types=['photo'])
 def say_lmao(message: telebot.types.Message):
     bot.reply_to(message, 'Nice meme XDD')
