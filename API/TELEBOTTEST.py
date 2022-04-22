@@ -1,8 +1,11 @@
 import telebot
 
-TOKEN = "5349388276:AAEEaOpHGfs3ADPcI5UmQuVoMV_eBqodK_g"
+tokfile = '..\dist\Token'
 
-bot = telebot.TeleBot(TOKEN)
+with open(tokfile, encoding='utf8') as f:
+    tok = f.read()
+
+bot = telebot.TeleBot(tok)
 
 # Обрабатываются все сообщения, содержащие команды '/start' or '/help'.
 @bot.message_handler(commands=['start', 'help'])
@@ -17,5 +20,10 @@ def handle_docs_audio(message):
 @bot.message_handler(content_types=['photo'])
 def say_lmao(message: telebot.types.Message):
     bot.reply_to(message, 'Nice meme XDD')
+
+# Повторяло
+@bot.message_handler()
+def say_lmao(message: telebot.types.Message):
+    bot.send_message(message.chat.id, message.text)
 
 bot.polling(none_stop=True)
