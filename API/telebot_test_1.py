@@ -36,7 +36,7 @@ def fact_data():
 def handle_start_help(message):
     bot.send_message(message.chat.id, f"Welcome, \ {message.chat.username}")
 
-# Обрабатываются все сообщения, содержащие команды '/start' or '/help'.
+# Обрабатываются все сообщения, содержащие команды '/ytemp'.
 @bot.message_handler(commands=['ytemp'])
 def handle_ytemp(message):
     bot.send_message(message.chat.id, fact_data())
@@ -54,6 +54,6 @@ def say_lmao(message: telebot.types.Message):
 # Повторяло
 @bot.message_handler()
 def say_lmao(message: telebot.types.Message):
-    bot.send_message(message.chat.id, f'Здорова, \ {message.chat.username} \n Чтобы узнать данные с метеостанции ЯО введи \ytemp')
+    bot.send_message(message.chat.id, f'Здорова, \ {message.chat.username} \n Чтобы узнать данные с метеостанции ЯО введи /ytemp')
 
 bot.polling(none_stop=True)
