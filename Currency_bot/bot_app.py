@@ -1,18 +1,22 @@
 import telebot
 import requests
 import lxml.html
+import json
 
-tokfile = 'data\Token'
+tokf = 'data\Token'
 
-with open(tokfile, encoding='utf8') as f:
+with open(tokf) as f:
     tok = f.read()
 
 bot = telebot.TeleBot(tok)
 
 cur = {
-    'Г1': 'G',
-    'Г2': 'H',
-    'Г3': 'F',
+    'USD': 'USD',
+    'EUR': 'EUR',
+    'RUB': 'RUB',
+    'Доллар': 'USD',
+    'Евро': 'EUR',
+    'Рубль': 'RUB',
 }
 
 # Обрабатываются все сообщения, содержащие команды '/start' or '/help'.
@@ -31,4 +35,19 @@ def handle_values(message: telebot.types.Message):
         repl += '\n' + '\t' + k
     bot.send_message(message.chat.id, repl)
 
+# Обрабатываются все сообщения
+@bot.message_handler(content_types=['text'])
+def do_convert(message: telebot.types.Message):
+    quote, base, amount = message.text.split()
+    req = requests.get(f'https://min-api.cryptocompare.com/data/price?fsym={cur[quote]}&tsyms={cur[base]}')
+    repl = json.loads(req.content)[cur[base]]
+    bot.send_message(message.chat.id, repl)
+
+
 bot.polling(none_stop=True)
+
+# test area:
+# quote, base, amount = 'USD', 'EUR', 1
+# req = requests.get(f'https://min-api.cryptocompare.com/data/price?fsym={cur[quote]}&tsyms={cur[base]}')
+# repl = json.loads(req.content)[cur[base]]
+# print(repl)
