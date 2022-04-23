@@ -55,7 +55,10 @@ tree = lxml.html.document_fromstring(html)
 
 tbody = tree.findall('body/div[1]/div[2]/div/div/div[1]/main/article/div/div/table/tbody/tr')  # помещаем в аргумент методу findall скопированный xpath
 
+print('Данные в реальном времени по ЯО \nМС - Метеорологическая станция \nАМС - Автоматическая метеорологическая станция')
+print(69*'-')
+
 for tr in tbody:
     tmp = tr.findall('td')
-    for i in range(len(tmp)):
-        print(tmp[i].text)
+    if len(tmp):
+        print(f'\t{tmp[0].text}\nТемпература: {tmp[1].text} °C\nДавление: {tmp[3].text} мм р.ст.\nВлажность: {tmp[4].text} %\nСкорость ветра: {tmp[2].text} м/с\n')
