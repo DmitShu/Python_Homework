@@ -40,7 +40,8 @@ def handle_values(message: telebot.types.Message):
 def do_convert(message: telebot.types.Message):
     quote, base, amount = message.text.split()
     req = requests.get(f'https://min-api.cryptocompare.com/data/price?fsym={cur[quote]}&tsyms={cur[base]}')
-    repl = json.loads(req.content)[cur[base]]
+    total = json.loads(req.content)[cur[base]] * float(amount)
+    repl = f'Цена {amount} {quote} в {base} = {round(total, 2)}'
     bot.send_message(message.chat.id, repl)
 
 
