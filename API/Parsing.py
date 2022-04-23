@@ -49,16 +49,19 @@ from lxml import etree
 
 html = requests.get('https://www.yacgms.ru/fakticheskie-dannye/').content  # фактические данные
 
-
 # создадим объект ElementTree. Он возвращается функцией parse()
 tree = lxml.html.document_fromstring(html)
 
 tbody = tree.findall('body/div[1]/div[2]/div/div/div[1]/main/article/div/div/table/tbody/tr')  # помещаем в аргумент методу findall скопированный xpath
 
-print('Данные в реальном времени по ЯО \nМС - Метеорологическая станция \nАМС - Автоматическая метеорологическая станция')
-print(69*'-')
+message = 'Данные в реальном времени по ЯО \nМС - Метеорологическая станция \nАМС - Автоматическая метеорологическая станция\n' + 69*'-' + '\n'
+
+# print('Данные в реальном времени по ЯО \nМС - Метеорологическая станция \nАМС - Автоматическая метеорологическая станция')
+# print(69*'-')
 
 for tr in tbody:
     tmp = tr.findall('td')
     if len(tmp):
-        print(f'\t{tmp[0].text}\nТемпература: {tmp[1].text} °C\nДавление: {tmp[3].text} мм р.ст.\nВлажность: {tmp[4].text} %\nСкорость ветра: {tmp[2].text} м/с\n')
+        message += f'\t{tmp[0].text}\nТемпература: {tmp[1].text} °C\nДавление: {tmp[3].text} мм р.ст.\nВлажность: {tmp[4].text} %\nСкорость ветра: {tmp[2].text} м/с\n'
+        # print(f'\t{tmp[0].text}\nТемпература: {tmp[1].text} °C\nДавление: {tmp[3].text} мм р.ст.\nВлажность: {tmp[4].text} %\nСкорость ветра: {tmp[2].text} м/с\n')
+print(message)
