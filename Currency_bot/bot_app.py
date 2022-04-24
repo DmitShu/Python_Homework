@@ -1,6 +1,9 @@
 import telebot
-from bot_config import cur
 from bot_extensions import APIException, Bot_Extensions
+
+# token хранится в области, вынесенной за версионный контроль.
+# Для тестирования, исользуйте свой
+# bot = telebot.TeleBot('')
 
 bot = telebot.TeleBot(Bot_Extensions.get_token())
 
@@ -15,36 +18,24 @@ def handle_help(message: telebot.types.Message):
 # Обрабатываются все сообщения, содержащие команды '/start' or '/help'.
 @bot.message_handler(commands=['values'])
 def handle_values(message: telebot.types.Message):
-    repl = "Лоступные валюты:"
-    for k in cur.keys():
-        repl += '\n' + '\t' + k
-    bot.send_message(message.chat.id, repl)
+    bot.send_message(message.chat.id, Bot_Extensions.get_values())
 
 # Обрабатываются все сообщения
 @bot.message_handler(content_types=['text'])
 def do_convert(message: telebot.types.Message):
     try:
-        values = message.text.split()
+        reply = Bot_Extensions.process_data(message.text)
 
-        if len(values) != 3:
-            raise APIException('"Параметров должно быть три"')
-
-        quote, base, amount = values
-        total = Bot_Extensions.get_price(quote, base, amount)
     except APIException as ex:
-        bot.send_message(message.chat.id, f'Ошибка:\n{ex}\n'
-                                          f'Введите команду в следующем формате:\n'
-                                          f'<имя валюты цену которой нужно узнать> <имя валюты в которой надо узнать цену> <количество валюты> (USD RUB 1000)\n\n'
-                                          f'список доступных валют можно узнать по команде /values')
+        bot.send_message(message.chat.id, f'Ошибка:\n{ex}\n')
 
     except Exception as ex:
-        bot.send_message(message.chat.id, f'Ошибка:\n{ex}\n'
+        bot.send_message(message.chat.id, f'Что-то пошло не так:\n{ex}\n'
                                           f'Попробуйте команду /help\n'
                                           f'Если ничего не помогло, обратитесь к разработчику.')
 
     else:
-        repl = f'Цена {amount} {quote} в {base} = {round(total, 2)}'
-        bot.send_message(message.chat.id, repl)
+        bot.send_message(message.chat.id, reply)
 
 bot.polling(none_stop=True)
 
