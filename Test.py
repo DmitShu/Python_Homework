@@ -117,3 +117,23 @@
 # print(teststr)
 # print(id(teststr))
 # print((0 + 1) // 2)
+
+
+
+
+currency = {
+    'USD': ['USD', 'ДОЛЛАР', '$'],
+    'EUR': ['EUR', 'ЕВРО', '€'],
+    'RUB': ['RUB', 'РУБЛЬ', 'РУБ', 'Р'],
+}
+
+reply = "Лоступные валюты:"
+for k in currency.values():
+    reply += '\n' + '\t' + '-'.join(k)
+print(reply)
+
+txt = 'евро'
+
+for k, v in currency.items():
+    if txt.upper() in v:
+        print(k)

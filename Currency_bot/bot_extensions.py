@@ -17,9 +17,9 @@ class Bot_Extensions:
     # вывод в сообщение текста доступных валют
     @staticmethod
     def get_values():
-        reply = "Лоступные валюты:"
-        for k in currency.keys():
-            reply += '\n' + '\t' + k
+        reply = "Доступные валюты:"
+        for k in currency.values():
+            reply += '\n' + '\t' + '-'.join(k)
         return(reply)
 
     # проверки данных от пользователя и вывод текста
@@ -44,15 +44,21 @@ class Bot_Extensions:
 
         quote, base, amount = values
 
-        try:
-            quote_ticker = currency[quote]
-        except KeyError:
-            raise APIException(f'"Не удалось обработать валюту {quote}"' + extxt)
+        quote_ticker, base_ticker = '', ''
 
-        try:
-            base_ticker = currency[base]
-        except KeyError:
-            raise APIException(f'"Не удалось обработать валюту {base}"' + extxt)
+        for k, v in currency.items():
+
+            if quote.upper() in v:
+                quote_ticker = k
+
+            if base.upper() in v:
+                base_ticker = k
+
+        if quote_ticker == '':
+                raise APIException(f'"Не удалось обработать валюту {quote}"' + extxt)
+
+        if base_ticker == '':
+                raise APIException(f'"Не удалось обработать валюту {base}"' + extxt)
 
         if quote == base:
             raise APIException(f'"Введены одинаковые валюты {base} {base}"' + extxt)
@@ -80,7 +86,7 @@ class Bot_Extensions:
                                f'Если не помогло, обратитесь к разработчику.\n')
 
         try:
-            total = json.loads(req.content)[currency[base]] * amount
+            total = json.loads(req.content)[base] * amount
         except:
             raise APIException(f'"Неожиданный ответа сервера: {json.loads(req.content)}"\n'
                                f'Попробуйте повторить запрос позже.\n'
