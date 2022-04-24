@@ -1,11 +1,18 @@
 import requests
 import json
-from conf import cur
+from bot_config import cur
 
 class APIException(Exception):
     pass
 
-class ValuesConverter:
+class Bot_Extensions:
+    @staticmethod
+    def get_token():
+        tokf = 'data\Token'
+
+        with open(tokf) as f:
+            return (f.read())
+
     @staticmethod
     def convert(quote: str, base: str, amount: str):
 

@@ -1,13 +1,8 @@
 import telebot
-from conf import cur
-from extensions import APIException, ValuesConverter
+from bot_config import cur
+from bot_extensions import APIException, Bot_Extensions
 
-tokf = 'data\Token'
-
-with open(tokf) as f:
-    tok = f.read()
-
-bot = telebot.TeleBot(tok)
+bot = telebot.TeleBot(Bot_Extensions.get_token())
 
 # Обрабатываются все сообщения, содержащие команды '/start' or '/help'.
 @bot.message_handler(commands=['start', 'help'])
@@ -34,7 +29,7 @@ def do_convert(message: telebot.types.Message):
         raise APIException('Параметров должно быть три.')
 
     quote, base, amount = values
-    total = ValuesConverter.convert(quote, base, amount)
+    total = Bot_Extensions.convert(quote, base, amount)
 
     repl = f'Цена {amount} {quote} в {base} = {round(total, 2)}'
     bot.send_message(message.chat.id, repl)
