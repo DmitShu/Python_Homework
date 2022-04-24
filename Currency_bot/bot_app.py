@@ -22,6 +22,33 @@ cur = {
 class APIException(Exception):
     pass
 
+class ValuesConverter:
+    @staticmethod
+    def convert(quote: str, base: str, amount: str):
+
+        if quote == base:
+            raise APIException(f'Введены одинаковые валюты {base}.')
+
+        try:
+            quote_ticker = cur[quote]
+        except KeyError:
+            raise APIException(f'Не удалось обработать валюту {quote}.')
+
+        try:
+            base_ticker = cur[base]
+        except KeyError:
+            raise APIException(f'Не удалось обработать валюту {base}.')
+
+        try:
+            amount = float(amount)
+        except KeyError:
+            raise APIException(f'Не удалось обработать количество {amount}.')
+
+        req = requests.get(f'https://min-api.cryptocompare.com/data/price?fsym={quote_ticker}&tsyms={base_ticker}')
+        total = json.loads(req.content)[cur[base]] * amount
+
+        return total
+
 # Обрабатываются все сообщения, содержащие команды '/start' or '/help'.
 @bot.message_handler(commands=['start', 'help'])
 def handle_help(message: telebot.types.Message):
@@ -43,31 +70,12 @@ def handle_values(message: telebot.types.Message):
 def do_convert(message: telebot.types.Message):
     values = message.text.split()
 
-    if len(values) > 3:
-        raise APIException('Слишком меого параметров.')
+    if len(values) != 3:
+        raise APIException('Параметров должно быть три.')
 
     quote, base, amount = values
+    total = ValuesConverter.convert(quote, base, amount)
 
-    if quote == base:
-        raise APIException(f'Введены одинаковые валюты {base}.')
-
-    try:
-        quote_ticker = cur[quote]
-    except KeyError:
-        raise APIException(f'Не удалось обработать валюту {quote}.')
-
-    try:
-        base_ticker = cur[base]
-    except KeyError:
-        raise APIException(f'Не удалось обработать валюту {base}.')
-
-    try:
-        amount = float(amount)
-    except KeyError:
-        raise APIException(f'Не удалось обработать количество {amount}.')
-
-    req = requests.get(f'https://min-api.cryptocompare.com/data/price?fsym={quote_ticker}&tsyms={base_ticker}')
-    total = json.loads(req.content)[cur[base]] * amount
     repl = f'Цена {amount} {quote} в {base} = {round(total, 2)}'
     bot.send_message(message.chat.id, repl)
 
