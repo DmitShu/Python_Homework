@@ -48,7 +48,7 @@ def handle_docs_audio(message):
 def say_lmao(message: telebot.types.Message):
     bot.reply_to(message, 'Nice meme XDD')
 
-# Повторяло
+# Ответ на любой текст
 @bot.message_handler()
 def say_lmao(message: telebot.types.Message):
     bot.send_message(message.chat.id, f'Здорова, \ {message.chat.username} \n Чтобы узнать данные с метеостанции ЯО введи /ytemp')
